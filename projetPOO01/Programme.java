@@ -3,7 +3,7 @@ package projetPOO01;
 import java.util.List;
 import java.util.Scanner;
 
-import projPOO01.enumerations.ESalarie;
+
 import projetPOO01Enumerations.EPersonne;
 import projetPOO01Exceptions.ErreurSaisie;
 
@@ -175,7 +175,7 @@ public class Programme {
           	 		}
 	           	 	}
 				}	
-			/**
+			
 			else if(ep == EPersonne.nClient) {
 	           	 erreursaisie = true;
 	           	 while(erreursaisie) {
@@ -191,21 +191,23 @@ public class Programme {
          	 		}
 	           	 	}
 				}
-			**/		
-			/**if (ep == EPersonne.nFour) {
-				while(testNFournisseur(ep)) {
-					System.out.println("Le numéro fournisseur est déjà prit, choisissez un autre numéro");
-					element = sc.nextLine();
+					
+			else if(ep == EPersonne.nFour) {
+	           	 erreursaisie = true;
+	           	 while(erreursaisie) {
+	           	 	try {
+	            		 String nFour = sc.nextLine();
+	            		 testNClient(nFour);
+	            		 dico.put(ep,nFour);
+	            		 erreursaisie = false;
+	           	 	}
+        	 		catch(Exception e) {
+        	 			System.err.println(e.getMessage());
+        	 			System.out.println(dico.get(ep));
+        	 		}
+	           	 	}
 				}
-			}
-			
-			else if (k.equals("le numéro client")) {
-				while(testNClient(k)) {
-					System.out.println("Le numéro client est déjà prit, choisissez un autre numéro");
-					element = sc.nextLine();
-				}
-			}
-			**/
+
 			else {
 				element = sc.nextLine();
 	   	 		dico.put(ep,element);	//ajouter ici les test pour les verification salaire etc
@@ -242,28 +244,6 @@ public class Programme {
 	}
 
 
-	public static boolean testNFournisseur(String nFournisseur) {
-		List<String> listNFournisseur;
-		listNFournisseur = listNFour();
-		for (String f:listNFournisseur) {
-			if (f.equals(nFournisseur)) {
-				return true;
-				}
-			}
-		return false;
-		}
-
-	public static boolean testNClient(String nClient) {
-		List<String> listNClient;
-		listNClient = listNClient();
-		for (String c:listNClient) {
-			if (c.equals(nClient)) {
-				return true;
-				}
-			}
-		return false;
-		}
-	
 
 	public static List<String> listNFour() {
 		List<String> listNFournisseur = new ArrayList<String>() ;
@@ -290,10 +270,24 @@ public class Programme {
 	
 	
 	
-	
-	
-	
-	
+	public static void testNFournisseur(String nFournisseur) throws ErreurSaisie {
+		List<String> listNFournisseur;
+		listNFournisseur = listNFour();
+		for (String f:listNFournisseur) {
+			if (f.equals(nFournisseur)) {
+				throw new ErreurSaisie("Attention le numéro fournisseur existe déjà");
+				}
+			}
+		}		
+	public static void testNClient(String nClient) throws ErreurSaisie {
+		List<String> listNClient;
+		listNClient = listNClient();
+		for (String c:listNClient) {
+			if (c.equals(nClient)) {
+				throw new ErreurSaisie("Attention le numéro client existe déjà");
+				}
+			}
+		}
 	// Les mettre dans une autre classe pour plus de lisibilité
 	public static void checknSecu(String nSecu) throws ErreurSaisie {
 		
@@ -315,7 +309,7 @@ public class Programme {
 	}
 	
 	public static void checkSalaire(String salaire) throws ErreurSaisie {
-		if (salaire.matches("\\d{0,5},\\d{2}")) { 
+		if (!salaire.matches("\\d{0,5},\\d{2}")) { 
 			throw new ErreurSaisie("Attention il faut insérer au format XXXX,XX");
 		}
 	}
