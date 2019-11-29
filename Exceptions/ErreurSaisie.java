@@ -1,4 +1,4 @@
-package projetPOO01Exceptions;
+package projetPOO01.Exceptions;
 
 public class ErreurSaisie extends Exception {
 

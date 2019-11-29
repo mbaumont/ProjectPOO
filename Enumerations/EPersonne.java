@@ -1,4 +1,4 @@
-package projetPOO01Enumerations;
+package projetPOO01.Enumerations;
 
 public enum EPersonne {
 	nom,
@@ -10,5 +10,6 @@ public enum EPersonne {
 	nFour,
 	salaire,
 	nSecu,
+	clientOuPas,
 	
 }

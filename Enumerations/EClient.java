@@ -1,4 +1,4 @@
-package projetPOO01Enumerations;
+package projetPOO01.Enumerations;
 
 public enum EClient {
 	nom,

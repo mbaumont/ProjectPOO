@@ -1,7 +1,7 @@
-package projetPOO01GestionPersonnes;
+package projetPOO01.GestionPersonnes;
 
 public interface IPatron {
 	public void embauche();
-	public void paie();
+	public void paieSalarie();
 	public void licencie();
 }

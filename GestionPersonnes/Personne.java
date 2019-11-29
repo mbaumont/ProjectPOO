@@ -1,5 +1,6 @@
-package projetPOO01GestionPersonnes;
+package projetPOO01.GestionPersonnes;
 
+import projetPOO01.Exceptions.ErreurSaisie;
 
 public class Personne {
 	
@@ -8,7 +9,8 @@ public class Personne {
 	private String adresse;
 	private String ville;
 	private String codepostal;
-	
+	private String clientOuPas;
+
 /**	
 	public Personne() {
 		 Constructeur par défaut 
@@ -23,11 +25,13 @@ public class Personne {
 	
 	public Personne(String nom, String prenom, String adresse, String ville, String codepostal) {
 		super();
+	
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresse = adresse;
 		this.ville = ville;
 		this.codepostal = codepostal;
+		this.setClientOuPas("non");
 	}
 
 
@@ -76,8 +80,41 @@ public class Personne {
 	public void setCodepostal(String codepostal) {
 		this.codepostal = codepostal;
 	}
+
+
+	public void achete() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public static void checkCodePostal(String codepostal) throws ErreurSaisie {
+		if(codepostal.length() !=5) {
+			throw new ErreurSaisie("Attention le code postal doit être composé de 5 chiffres");
+		}
+		try {
+			Integer.parseInt(codepostal);
+		}
+		catch(Exception e) {
+			throw new ErreurSaisie("Attention il faut insérer des chiffres");
+		}
+	}
 	
 
+	public static void checkClientOuPas(String clientOuPas) throws ErreurSaisie {
+		if(!clientOuPas.equals("oui")&&!clientOuPas.equals("non")) {
+			throw new ErreurSaisie("Attention taper oui ou non");
+		}
+	}
+
+
+	public String getClientOuPas() {
+		return clientOuPas;
+	}
+
+
+	public void setClientOuPas(String clientOuPas) {
+		this.clientOuPas = clientOuPas;
+	}
 
 	
 

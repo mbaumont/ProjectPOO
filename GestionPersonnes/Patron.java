@@ -1,12 +1,13 @@
-package projetPOO01GestionPersonnes;
+package projetPOO01.GestionPersonnes;
 
 import java.util.Dictionary;
 
-import projetPOO01Enumerations.EPersonne;
+import projetPOO01.Enumerations.EPersonne;
 
 
 public class Patron extends Salarie implements IClient, IPatron {
-
+	public boolean clientOuPas = false;
+	
 	public Patron(String nom, String prenom, String adresse, String ville, String codepostal, String nSecu,
 			String salaire) {
 		super(nom, prenom, adresse, ville, codepostal, nSecu, salaire);
@@ -14,8 +15,11 @@ public class Patron extends Salarie implements IClient, IPatron {
 	}
 
 	public Patron(Dictionary<EPersonne, String> dico) {
-		super(dico);
-		// TODO Auto-generated constructor stub
+		super(dico.get(EPersonne.nom),dico.get(EPersonne.prenom),
+				dico.get(EPersonne.adresse) , dico.get(EPersonne.ville) 
+				, dico.get(EPersonne.codepostal),dico.get(EPersonne.nSecu),dico.get(EPersonne.salaire));
+	
+
 	}
 
 	public static void main(String[] args) {
@@ -31,6 +35,12 @@ public class Patron extends Salarie implements IClient, IPatron {
 
 	@Override
 	public void licencie() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void paieSalarie() {
 		// TODO Auto-generated method stub
 		
 	}

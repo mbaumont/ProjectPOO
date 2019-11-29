@@ -1,8 +1,12 @@
-package projetPOO01GestionPersonnes;
+package projetPOO01.GestionPersonnes;
 
 import java.util.Dictionary;
+import java.util.List;
 
-import projetPOO01Enumerations.EPersonne;
+import projetPOO01.Enumerations.EPersonne;
+import projetPOO01.Exceptions.ErreurSaisie;
+import projetPOO01.Methodes.Achat;
+import projetPOO01.Methodes.Commande;
 
 public class Client extends Personne implements IFournisseur, IClient {
 	
@@ -15,18 +19,17 @@ public class Client extends Personne implements IFournisseur, IClient {
 	
 
 	public Client(Dictionary<EPersonne, String> dico) {
-		super(dico.get(EPersonne.nom),dico.get(EPersonne.prenom),
+		this(dico.get(EPersonne.nom),dico.get(EPersonne.prenom),
 				dico.get(EPersonne.adresse) , dico.get(EPersonne.ville) 
-				, dico.get(EPersonne.codepostal));
-		this.nClient =  String.valueOf(dico.get(EPersonne.nClient));
+				, dico.get(EPersonne.codepostal),String.valueOf(dico.get(EPersonne.nClient)));
 	}
 
 
 	@Override
 	
-	public void livre() {
+	public boolean livre() {
 		// TODO Auto-generated method stub
-
+		return true;
 	}
 
 	public String getnClient() {
@@ -38,7 +41,7 @@ public class Client extends Personne implements IFournisseur, IClient {
 	}
 
 	@Override
-	public void commande() {
+	public void commande(List<Commande> commandes) {
 		// TODO Auto-generated method stub
 
 	}
@@ -51,15 +54,42 @@ public class Client extends Personne implements IFournisseur, IClient {
 	}
 
 	@Override
-	public void paie() {
+	public boolean paie() {
 		// TODO Auto-generated method stub
 		System.out.println("Client paie");
-		
+		return true;
 	}
 
 	@Override
 	public String toString() {
 		return super.toString() + ", Numéro Client= "+nClient;
+	}
+
+
+	@Override
+	public void achete(List<Achat> achat) {
+		// TODO Auto-generated method stub
+		
+	}
+	public boolean fournisseurOuPas() {
+		return true;
+	}
+	public boolean clientOuPas() {
+		return true;
+	}
+
+	public static void testNClient(String nClient,List<String> listNClient) throws ErreurSaisie {
+		for (String c:listNClient) {
+			if (c.equals(nClient)) {
+				throw new ErreurSaisie("Attention le numéro client existe déjà");
+				}
+			}
+		}
+
+
+	@Override
+	public String afficheNClient() {
+		return nClient;
 	}
 
 
