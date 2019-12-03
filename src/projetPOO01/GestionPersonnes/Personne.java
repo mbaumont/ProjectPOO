@@ -2,7 +2,7 @@ package projetPOO01.GestionPersonnes;
 
 import projetPOO01.Exceptions.ErreurSaisie;
 
-public class Personne {
+public class Personne implements Serializable {
 	
 	private String nom;
 	private String prenom;
@@ -37,7 +37,7 @@ public class Personne {
 
 	@Override
 	public String toString() {
-		return this.getClass().getSimpleName()+": nom = " + nom + ", prenom = " + prenom + ", adresse = " + adresse + ", ville = " + ville
+		return this.getClass().getSimpleName()+" : nom = " + nom + ", prenom = " + prenom + ", adresse = " + adresse + ", ville = " + ville
 				+ ", code postal = " + codepostal + " ";
 	}
 

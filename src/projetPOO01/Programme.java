@@ -1,10 +1,20 @@
 package projetPOO01;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Scanner;
-
+import javax.swing.JFrame;
 import projetPOO01.Enumerations.EPersonne;
-import projetPOO01.Exceptions.ErreurSaisie;
 import projetPOO01.GestionPersonnes.Client;
 import projetPOO01.GestionPersonnes.Fournisseur;
 import projetPOO01.GestionPersonnes.IClient;
@@ -15,20 +25,40 @@ import projetPOO01.GestionPersonnes.Salarie;
 import projetPOO01.Methodes.Achat;
 import projetPOO01.Methodes.Commande;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Dictionary;
-import java.util.Enumeration;
-import java.util.Hashtable;
-
 public class Programme {
 	static List<Personne> listPersonne = new ArrayList<Personne>();
 	static boolean Patron = false;
 	static Scanner sc = new Scanner(System.in);
 	public static void main(String[] args) {		
-		afficheMenu();			
+		afficheMenu();
+
 	}	
+	public static void sauvegardeListe(String nomFichier) {		
+		try {
+			FileOutputStream fos = new FileOutputStream(nomFichier + ".ser");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			System.out.println(listPersonne.toString());
+			oos.writeObject(listPersonne);
+			oos.flush();
+			oos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+	}
+	@SuppressWarnings("unchecked")
+	public static void chargeListe(String nomFichier){	
+		try {
+			 FileInputStream fis = new FileInputStream(nomFichier + ".ser");
+			 ObjectInputStream ois = new ObjectInputStream(fis);
+			 listPersonne = (List<Personne>)ois.readObject();
+			 System.out.println(listPersonne.toString());
+			 ois.close();
+		} 
+		catch ( IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+	}
 	public static void afficheMenu() {
 		String a;
 		System.out.println("Menu Principal");
@@ -37,9 +67,12 @@ public class Programme {
 		System.out.println("Taper 1: Saisie d'un nouveau profil");
 		System.out.println("Taper 2: Visualiser les profils existants");
 		System.out.println("Taper 3: Gestion Client ");
-		System.out.println("Taper 4: Gestion Fournisseurs \n");
+		System.out.println("Taper 4: Gestion Fournisseurs");
+		System.out.println("Taper 5: Sauvegarde du personnel");
+		System.out.println("Taper 6: Chargement du personnel");
 		
-		String[] listString = {"1","2","3","4"};		
+		
+		String[] listString = {"1","2","3","4","5","6"};		
 		a = validateAnswer(listString);
 		switch(a) {
 		case "1": 
@@ -53,6 +86,35 @@ public class Programme {
 			break;
 		case "4":
 			afficheMenu4();
+			break;
+		case "5":
+			String nomFichiersauv;
+			System.out.println("Entrez le nom du fichier à sauvegarder:");
+			nomFichiersauv = sc.nextLine();
+			sauvegardeListe(nomFichiersauv);
+			System.out.println("Fichier sauvegardé avec succès.");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}	
+			
+			afficheMenu();
+			break;
+		case "6":
+			String nomFichierch;
+			System.out.println("Entrez le nom du fichier à charger:");
+			nomFichierch = sc.nextLine();
+			chargeListe(nomFichierch);
+			System.out.println("Fichier chargé avec succès.");
+			try {
+				Thread.sleep(1500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}	
+			
+			afficheMenu();
+			break;
 		default:
 			afficheMenu();			
 			break;
@@ -81,7 +143,7 @@ public class Programme {
 				IClient f = (IClient) p;
 				if (f.clientOuPas()) {
 					listNClients.add(f.afficheNClient());
-					System.out.print(f.afficheNClient());
+					System.out.print(f.afficheNClient()+" : Type");
 					System.out.println(f);
 					listClient.add(f);
 				}		
@@ -138,8 +200,8 @@ public class Programme {
 			for (Achat ach:listAchats) {
 				System.out.println(ach.toString());
 			}
-			System.out.println("Taper R pour retour ou M pour le menu principal. ");
-			String[] listChoixPatron = {"R","M"};
+			System.out.println("Taper r pour retour ou entré pour le menu principal. ");
+			String[] listChoixPatron = {"r",""};
 			String b = validateAnswer(listChoixPatron);
 			switch(b) {
 			case "M":
@@ -207,7 +269,7 @@ public class Programme {
 				IFournisseur f = (IFournisseur) p;
 				if (f.fournisseurOuPas()) {
 					listNFournisseur.add(f.afficheNFournisseur());
-					System.out.print(f.afficheNFournisseur());
+					System.out.print(f.afficheNFournisseur() + " : Type ");
 					System.out.println(f);
 					listFournisseur.add(f);
 				}		
@@ -377,8 +439,8 @@ public class Programme {
 			System.out.println("----------------------------------------------- \n");
 			if (Patron) {
 				System.out.println("Attention vous avez déjà ajouté un patron, si vous continuez vous allez le supprimer.\"");
-				System.out.println("Taper R pour retourner ou C pour continuer:");
-				String[] listChoixPatron = {"R","C"};
+				System.out.println("Taper r pour retourner ou c pour continuer:");
+				String[] listChoixPatron = {"r","c"};
 				String b = validateAnswer(listChoixPatron);
 				switch(b) {
 				case "C":
