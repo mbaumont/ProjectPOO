@@ -12,17 +12,20 @@ public class Salarie extends Personne implements IClient {
 	private String nSecu;
 	private String salaire;
 	private String nClient;
+	private List<Achat> listAchats;
 	public Salarie(String nom, String prenom, String adresse, String ville, String codepostal, String nSecu, String salaire) {
 		super(nom, prenom, adresse, ville, codepostal); 
 		this.nSecu = nSecu;
 		this.salaire = salaire;
 		this.nClient = null;
+		this.setListAchats(null);
 	}
 	public Salarie(String nom, String prenom, String adresse, String ville, String codepostal, String nSecu, String salaire,String nClient) {
 		super(nom, prenom, adresse, ville, codepostal); 
 		this.nSecu = nSecu;
 		this.salaire = salaire;
 		this.nClient = nClient;
+		this.setListAchats(null);
 	}
 	public Salarie(Dictionary<EPersonne, String> dico) {
 		this(dico.get(EPersonne.nom),dico.get(EPersonne.prenom),
@@ -36,7 +39,7 @@ public class Salarie extends Personne implements IClient {
 
 	@Override
 	public boolean paie() {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 
@@ -66,7 +69,7 @@ public class Salarie extends Personne implements IClient {
 	}
 	@Override
 	public void achete(List<Achat> achat) {
-		// TODO Auto-generated method stub
+		setListAchats(achat);
 		
 	}
 	@Override
@@ -80,6 +83,12 @@ public class Salarie extends Personne implements IClient {
 	public String afficheNClient() {
 		
 		return nClient;
+	}
+	public List<Achat> getListAchats() {
+		return listAchats;
+	}
+	public void setListAchats(List<Achat> listAchats) {
+		this.listAchats = listAchats;
 	}
 	
 	

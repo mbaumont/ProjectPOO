@@ -12,16 +12,20 @@ public class Fournisseur extends Personne implements IClient, IFournisseur {
 	private String nFournisseur;
 	public boolean clientOuPas = false;
 	private String nClient;
+	private List<Achat> listAchats;
+	private List<Commande> listCommandes;
 	
 	public Fournisseur(String nom, String prenom, String adresse, String ville, String codepostal, String nFournisseur) {
 		super(nom, prenom, adresse, ville, codepostal); 
 		this.nFournisseur = nFournisseur;
 		this.nClient = null;
+		this.listAchats = null;
 	}
 	public Fournisseur(String nom, String prenom, String adresse, String ville, String codepostal, String nFournisseur, String nClient) {
 		super(nom, prenom, adresse, ville, codepostal); 
 		this.nFournisseur = nFournisseur;
 		this.nClient = nClient;
+		this.listAchats = null;
 
 	}
 
@@ -34,19 +38,21 @@ public class Fournisseur extends Personne implements IClient, IFournisseur {
 
 	@Override
 	public void achete() {
-		// TODO Auto-generated method stub
 		System.out.println("Fournisseur achète");
 
 	}
 
-
-
 	@Override
 	public void commande(List<Commande> commandes) {
-		// TODO Auto-generated method stub
-		
+		setListCommandes(this.listCommandes);
 	}
 
+	public List<Commande> getListCommandes() {
+		return listCommandes;
+	}
+	public void setListCommandes(List<Commande> listCommandes) {
+		this.listCommandes = listCommandes;
+	}
 	@Override
 	public String toString() {
 		if (this.nClient!=null) {
@@ -67,7 +73,7 @@ public class Fournisseur extends Personne implements IClient, IFournisseur {
 
 	@Override
 	public void achete(List<Achat> achat) {
-		// TODO Auto-generated method stub
+		setListAchats(achat);
 		
 	}
 
@@ -79,14 +85,13 @@ public class Fournisseur extends Personne implements IClient, IFournisseur {
 
 	@Override
 	public boolean fournisseurOuPas() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean paie() {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return true;
 	}
 
 	@Override
@@ -108,6 +113,23 @@ public class Fournisseur extends Personne implements IClient, IFournisseur {
 	public String afficheNClient() {
 
 		return nClient;
+	}
+	public List<Achat> getListAchats() {
+		return listAchats;
+	}
+	public void setListAchats(List<Achat> listAchats) {
+		this.listAchats = listAchats;
 	}	
+	public static void testNFour(String nFour,List<String> listNFour) throws ErreurSaisie {
+		for (String c:listNFour) {
+			if (c.equals(nFour)) {
+				throw new ErreurSaisie("Attention le numéro fournisseur existe déjà");
+				}
+			}
+		}
+	@Override
+	public String afficheNFournisseur() {
+		return nFournisseur;
+	}
 
 }

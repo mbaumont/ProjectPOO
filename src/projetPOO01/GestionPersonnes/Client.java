@@ -11,17 +11,30 @@ import projetPOO01.Methodes.Commande;
 public class Client extends Personne implements IFournisseur, IClient {
 	
 	private String nClient;
-	
+	private String nFour;
+	private List<Achat> listAchats;
+	private List<Commande> listCommandes;
+
 	public Client(String nom, String prenom, String adresse, String ville, String codepostal, String nClient) {
 		super(nom, prenom, adresse, ville, codepostal); // Obligatoire de donner le constructeur si pas de constructeur par défaut 
 		this.nClient = nClient;
+		this.nFour = null;
+		this.setListAchats(null);
+		
 	}
-	
+	public Client(String nom, String prenom, String adresse, String ville, String codepostal, String nClient, String nFour) {
+		super(nom, prenom, adresse, ville, codepostal); 
+		this.nClient = nClient;
+		this.nFour = nFour;
+		this.setListAchats(null);
+		
+	}	
 
 	public Client(Dictionary<EPersonne, String> dico) {
 		this(dico.get(EPersonne.nom),dico.get(EPersonne.prenom),
 				dico.get(EPersonne.adresse) , dico.get(EPersonne.ville) 
-				, dico.get(EPersonne.codepostal),String.valueOf(dico.get(EPersonne.nClient)));
+				, dico.get(EPersonne.codepostal),String.valueOf(dico.get(EPersonne.nClient)),dico.get(EPersonne.nFour));
+		this.setListAchats(null);
 	}
 
 
@@ -42,8 +55,7 @@ public class Client extends Personne implements IFournisseur, IClient {
 
 	@Override
 	public void commande(List<Commande> commandes) {
-		// TODO Auto-generated method stub
-
+		setListCommandes(this.listCommandes);
 	}
 
 	@Override
@@ -62,17 +74,20 @@ public class Client extends Personne implements IFournisseur, IClient {
 
 	@Override
 	public String toString() {
-		return super.toString() + ", Numéro Client= "+nClient;
+		if (this.nFour!=null) return super.toString() + ", Numéro Client= "+nFour+ ", Numéro Fournisseur= "+nFour;
+		else return super.toString() + ", Numéro Client= "+nClient;	
 	}
 
 
 	@Override
 	public void achete(List<Achat> achat) {
-		// TODO Auto-generated method stub
-		
+		setListAchats(achat);	
 	}
 	public boolean fournisseurOuPas() {
-		return true;
+		if (nFour != null) {
+			return true;
+		}
+		return false;
 	}
 	public boolean clientOuPas() {
 		return true;
@@ -90,6 +105,27 @@ public class Client extends Personne implements IFournisseur, IClient {
 	@Override
 	public String afficheNClient() {
 		return nClient;
+	}
+
+
+	public List<Achat> getListAchats() {
+		return listAchats;
+	}
+
+
+	public void setListAchats(List<Achat> listAchats) {
+		this.listAchats = listAchats;
+	}
+	@Override
+	public String afficheNFournisseur() {
+
+		return nFour;
+	}
+	public List<Commande> getListCommandes() {
+		return listCommandes;
+	}
+	public void setListCommandes(List<Commande> listFournisseur) {
+		this.listCommandes = listFournisseur;
 	}
 
 

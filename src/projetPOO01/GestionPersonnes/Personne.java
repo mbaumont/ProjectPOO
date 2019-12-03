@@ -100,7 +100,7 @@ public class Personne {
 	}
 	
 
-	public static void checkClientOuPas(String clientOuPas) throws ErreurSaisie {
+	public static void checkOuiNon(String clientOuPas) throws ErreurSaisie {
 		if(!clientOuPas.equals("oui")&&!clientOuPas.equals("non")) {
 			throw new ErreurSaisie("Attention taper oui ou non");
 		}

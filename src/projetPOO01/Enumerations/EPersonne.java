@@ -11,5 +11,6 @@ public enum EPersonne {
 	salaire,
 	nSecu,
 	clientOuPas,
+	fournisseurOuPas,
 	
 }

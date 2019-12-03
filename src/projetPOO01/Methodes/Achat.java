@@ -1,4 +1,5 @@
 package projetPOO01.Methodes;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import projetPOO01.Exceptions.ErreurSaisie;
@@ -10,6 +11,10 @@ public class Achat {
 		this.date = date;
 		this.intituleAchat = intituleAchat;
 		this.quantiteAchat = quantiteAchat;	
+	}
+	@Override
+	public String toString() {
+		return "Achat [Date:" + date + ", Intitulé=" + intituleAchat + ", Quantité=" + quantiteAchat + "]";
 	}
 	public Date getDate() {
 		return date;
@@ -29,12 +34,14 @@ public class Achat {
 	public void setQuantiteAchat(String quantiteAchat) {
 		this.quantiteAchat = quantiteAchat;
 	}
-	public static void checkDate(String date) throws ErreurSaisie {
-		if (!date.matches("\\d{0,1}\\d{0,9}\\\\d{0,3}\\d{0,9}\\\\d{0,9}\\\\d{0,9}")) {
-			throw new ErreurSaisie("Il faut insérer la date au format XX/XX/XX.");		
-		}
+	
+	public static Date checkDate(String date) throws Exception{
+		SimpleDateFormat format = new SimpleDateFormat();
+		format.applyPattern("dd/MM/yyyy");
+		format.setLenient(false);
+		Date dateOb = format.parse(date);
+		return dateOb;
 	}
-		
 	
 	
 

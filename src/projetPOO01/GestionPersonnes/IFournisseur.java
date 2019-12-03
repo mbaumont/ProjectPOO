@@ -6,5 +6,7 @@ public interface IFournisseur {
 	public boolean livre();
 	public void commande(List<Commande> commandes);
 	public boolean fournisseurOuPas();
+	public String afficheNFournisseur();
+
 	
 }
