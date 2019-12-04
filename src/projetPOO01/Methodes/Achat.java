@@ -2,7 +2,6 @@ package projetPOO01.Methodes;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import projetPOO01.Exceptions.ErreurSaisie;
 public class Achat {
 	private Date date;
 	private String intituleAchat;

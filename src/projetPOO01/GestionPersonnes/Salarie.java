@@ -9,6 +9,10 @@ import projetPOO01.Methodes.Achat;
 
 
 public class Salarie extends Personne implements IClient {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nSecu;
 	private String salaire;
 	private String nClient;
@@ -34,12 +38,27 @@ public class Salarie extends Personne implements IClient {
 				String.valueOf(dico.get(EPersonne.salaire)),dico.get(EPersonne.nClient));
 	}
 
-
-
-
+	public String getnSecu() {
+		return nSecu;
+	}
+	public void setnSecu(String nSecu) {
+		this.nSecu = nSecu;
+	}
+	public String getSalaire() {
+		return salaire;
+	}
+	public void setSalaire(String salaire) {
+		this.salaire = salaire;
+	}
+	public String getnClient() {
+		return nClient;
+	}
+	public void setnClient(String nClient) {
+		this.nClient = nClient;
+	}
 	@Override
 	public boolean paie() {
-		
+		System.out.println("Payement en cours.");
 		return true;
 	}
 
@@ -69,8 +88,8 @@ public class Salarie extends Personne implements IClient {
 	}
 	@Override
 	public void achete(List<Achat> achat) {
-		setListAchats(achat);
-		
+		setListAchats(achat);	
+		paie();
 	}
 	@Override
 	public boolean clientOuPas() {

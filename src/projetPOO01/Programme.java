@@ -1,7 +1,6 @@
 package projetPOO01;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -13,7 +12,6 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Scanner;
-import javax.swing.JFrame;
 import projetPOO01.Enumerations.EPersonne;
 import projetPOO01.GestionPersonnes.Client;
 import projetPOO01.GestionPersonnes.Fournisseur;
@@ -93,12 +91,7 @@ public class Programme {
 			nomFichiersauv = sc.nextLine();
 			sauvegardeListe(nomFichiersauv);
 			System.out.println("Fichier sauvegardé avec succès.");
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}	
-			
+			addTime();				
 			afficheMenu();
 			break;
 		case "6":
@@ -107,12 +100,7 @@ public class Programme {
 			nomFichierch = sc.nextLine();
 			chargeListe(nomFichierch);
 			System.out.println("Fichier chargé avec succès.");
-			try {
-				Thread.sleep(1500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}	
-			
+			addTime();
 			afficheMenu();
 			break;
 		default:
@@ -313,11 +301,9 @@ public class Programme {
 				Fournisseur.livre();
 				System.out.println("Commande réalisée avec succès!");
 				System.out.println("----------------------------");
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}				
+				addTime();	
+				afficheMenu();
+				
 			}
 			else {
 				System.out.println("Attention aucune commande enregistrée.");
@@ -334,10 +320,10 @@ public class Programme {
 			String[] listChoix = {"r",""};
 			String b = validateAnswer(listChoix);
 			switch(b) {
-			case "M":
+			case "m":
 				afficheMenu();
 				break;
-			case "R":	
+			case "r":	
 				afficheMenuCommandes(Fournisseur, listCommandes);
 				break;
 			}
@@ -409,6 +395,7 @@ public class Programme {
 			Personne p = new Salarie(dico); 
 			listPersonne.add(p);
 			System.out.println("Salarié ajouté. \n");
+			addTime();
 			afficheMenu1();
 			break;
 
@@ -420,6 +407,7 @@ public class Programme {
 			Personne p1 = new Client(dico);
 			listPersonne.add(p1);
 			System.out.println("Client ajouté. \n ");
+			addTime();
 			afficheMenu1();
 			break;
 		case "f":
@@ -432,6 +420,7 @@ public class Programme {
 			listPersonne.add(p2);
 			System.out.println(p2);
 			System.out.println("Fournisseur ajouté. \n");
+			addTime();
 			afficheMenu1();
 			break;
 		case "p":
@@ -446,6 +435,7 @@ public class Programme {
 				case "C":
 					deletePatron();
 					addPatron(dico);
+					addTime();
 					afficheMenu1();
 					break;
 					
@@ -469,7 +459,13 @@ public class Programme {
 		}				
 	}
 	
-	
+	public static void addTime() {
+		try {
+			Thread.sleep(1500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}	
+	}
 	public static void addPatron(Dictionary<EPersonne, String> dico) {
 		initDicoPersonne(dico, "p");
 		initToutesPersonne(dico);

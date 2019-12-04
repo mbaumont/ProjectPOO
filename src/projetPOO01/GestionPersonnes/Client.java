@@ -10,6 +10,10 @@ import projetPOO01.Methodes.Commande;
 
 public class Client extends Personne implements IFournisseur, IClient {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nClient;
 	private String nFour;
 	private List<Achat> listAchats;
@@ -41,7 +45,7 @@ public class Client extends Personne implements IFournisseur, IClient {
 	@Override
 	
 	public boolean livre() {
-		// TODO Auto-generated method stub
+
 		return true;
 	}
 
@@ -58,16 +62,10 @@ public class Client extends Personne implements IFournisseur, IClient {
 		setListCommandes(this.listCommandes);
 	}
 
-	@Override
-	public void achete() {
-		// TODO Auto-generated method stub
-		System.out.println("Client achète");
-		
-	}
+
 
 	@Override
 	public boolean paie() {
-		// TODO Auto-generated method stub
 		System.out.println("Client paie");
 		return true;
 	}

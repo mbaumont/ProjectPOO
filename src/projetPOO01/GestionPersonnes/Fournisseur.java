@@ -9,6 +9,10 @@ import projetPOO01.Methodes.Achat;
 import projetPOO01.Methodes.Commande;
 
 public class Fournisseur extends Personne implements IClient, IFournisseur {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nFournisseur;
 	public boolean clientOuPas = false;
 	private String nClient;
@@ -20,12 +24,14 @@ public class Fournisseur extends Personne implements IClient, IFournisseur {
 		this.nFournisseur = nFournisseur;
 		this.nClient = null;
 		this.listAchats = null;
+		this.listCommandes = null;
 	}
 	public Fournisseur(String nom, String prenom, String adresse, String ville, String codepostal, String nFournisseur, String nClient) {
 		super(nom, prenom, adresse, ville, codepostal); 
 		this.nFournisseur = nFournisseur;
 		this.nClient = nClient;
 		this.listAchats = null;
+		this.listCommandes = null;
 
 	}
 
@@ -36,11 +42,7 @@ public class Fournisseur extends Personne implements IClient, IFournisseur {
 				dico.get(EPersonne.nClient));
 	}
 
-	@Override
-	public void achete() {
-		System.out.println("Fournisseur achète");
 
-	}
 
 	@Override
 	public void commande(List<Commande> commandes) {
@@ -73,8 +75,7 @@ public class Fournisseur extends Personne implements IClient, IFournisseur {
 
 	@Override
 	public void achete(List<Achat> achat) {
-		setListAchats(achat);
-		
+		setListAchats(achat);		
 	}
 
 	@Override
