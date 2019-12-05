@@ -27,7 +27,7 @@ public class testsClient {
 	private final String ocodepostal="69008";
 	private final String oclientoupas="non";
 	private final String onClient="1";
-	private final String onFournisseur="2";
+	private final String onFournisseur="3";
 	private final String setnClient = "5";
 	private final Commande Commande1 = new Commande(new Date(), "Commande1", "2");
 	private final Commande Commande2 = new Commande(new Date(), "Commande2", "3");
@@ -42,7 +42,7 @@ public class testsClient {
 	
 	@Before
 	public void init() {
-		op = new Client(onom,oprenom,oadresse,oville,ocodepostal,onClient);
+		op = new Client(onom,oprenom,oadresse,oville,ocodepostal,onClient,onFournisseur);
 		op.setClientOuPas(oclientoupas);	
 		listCommandes.add(Commande1);
 		listCommandes.add(Commande2);
@@ -133,7 +133,7 @@ public class testsClient {
 	}	
 	@Test
 	public void testFournisseurOuPas() {
-		assertTrue(!op.fournisseurOuPas());
+		assertTrue(op.fournisseurOuPas());
 	}
 	@Test
 	public void testClientOuPas() {

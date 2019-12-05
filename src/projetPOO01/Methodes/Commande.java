@@ -23,16 +23,16 @@ public class Commande {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public String getIntituleAchat() {
+	public String getIntituleCommande() {
 		return intituleCommande;
 	}
-	public void setIntituleAchat(String intituleCommande) {
+	public void setIntituleCommande(String intituleCommande) {
 		this.intituleCommande = intituleCommande;
 	}
-	public String getQuantiteAchat() {
+	public String getQuantiteCommande() {
 		return quantiteCommande;
 	}
-	public void setQuantiteAchat(String quantiteAchat) {
+	public void setQuantiteCommande(String quantiteAchat) {
 		this.quantiteCommande = quantiteAchat;
 	}
 	

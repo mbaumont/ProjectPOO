@@ -32,10 +32,6 @@ public class testsPersonne {
 		assertNotNull(op);
 	}
 
-	@Test
-	public void testToString() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testGetNom() {
@@ -97,15 +93,12 @@ public class testsPersonne {
 		assertEquals(setcodepostal,op.getCodepostal());
 	}
 	/**
-
 	@Test
-	public void testAchete() {
+	public void testToString() {
 		fail("Not yet implemented");
 	}
-
-
 	@Test
-	public void testCheckOuiNon() {
+	public void testAchete() {
 		fail("Not yet implemented");
 	}
 

@@ -24,7 +24,7 @@ public class testsFournisseur {
 	private final String oville="Lyon";
 	private final String ocodepostal="69008";
 	private final String oclientoupas="non";
-	private final String onClient="1";
+	private final String onClient=null;
 	private final String onFour="2";
 	private final String setnFour = "5";
 	private final Commande Commande1 = new Commande(new Date(), "Commande1", "2");
@@ -120,15 +120,15 @@ public class testsFournisseur {
 	}
 	@Test
 	public void testFournisseurOuPas() {
-		assertTrue(!op.fournisseurOuPas());
+		assertTrue(op.fournisseurOuPas());
 	}
 	@Test
 	public void testClientOuPas() {
-		assertTrue(op.clientOuPas());
+		assertTrue(!op.clientOuPas());
 	}
 	@Test
 	public void testLivre() {
-		assertTrue(op.livre());
+		assertFalse(op.livre());
 	}
 	@Test
 	public void testPaie() {

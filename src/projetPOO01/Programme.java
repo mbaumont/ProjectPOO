@@ -22,7 +22,11 @@ import projetPOO01.GestionPersonnes.Personne;
 import projetPOO01.GestionPersonnes.Salarie;
 import projetPOO01.Methodes.Achat;
 import projetPOO01.Methodes.Commande;
-
+/**
+ * 
+ * @author Marie Baumont
+ *
+ */
 public class Programme {
 	static List<Personne> listPersonne = new ArrayList<Personne>();
 	static boolean Patron = false;

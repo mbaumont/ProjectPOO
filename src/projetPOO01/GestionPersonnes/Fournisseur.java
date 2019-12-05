@@ -112,7 +112,6 @@ public class Fournisseur extends Personne implements IClient, IFournisseur {
 		}
 	@Override
 	public String afficheNClient() {
-
 		return nClient;
 	}
 	public List<Achat> getListAchats() {

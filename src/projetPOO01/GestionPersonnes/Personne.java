@@ -3,12 +3,13 @@ package projetPOO01.GestionPersonnes;
 import java.io.Serializable;
 
 import projetPOO01.Exceptions.ErreurSaisie;
-
+/**
+ * @author Marie Baumont
+ * @version v1
+ * <b> JavaDoc pour la POE Lyon 2019 </b>
+ */
 public class Personne implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private String nom;
 	private String prenom;
@@ -17,18 +18,15 @@ public class Personne implements Serializable {
 	private String codepostal;
 	private String clientOuPas;
 
-/**	
-	public Personne() {
-		 Constructeur par défaut 
-		this.adresse = "";
-		this.codepostal = "";
-		this.nom = "";
-		this.prenom = "";
-		this.ville = "";
-		this("","","","","");
-	}
-**/	
-	
+	/**
+	 * Constructeur de la classe Personne
+	 * Tous les paramètres sont obligatoires et de type String
+	 * @param nom: nom de la personne
+	 * @param prenom: prénom de la personne
+	 * @param adresse: adresse de la personne
+	 * @param ville: ville de la personne 
+	 * @param codepostal: code postal de la personne 
+	 */
 	public Personne(String nom, String prenom, String adresse, String ville, String codepostal) {
 		super();
 	
@@ -93,6 +91,21 @@ public class Personne implements Serializable {
 		
 	}
 	
+	public String getClientOuPas() {
+		return clientOuPas;
+	}
+
+
+	public void setClientOuPas(String clientOuPas) {
+		this.clientOuPas = clientOuPas;
+	}
+
+	public static void checkOuiNon(String clientOuPas) throws ErreurSaisie {
+		if(!clientOuPas.equals("oui")&&!clientOuPas.equals("non")) {
+			throw new ErreurSaisie("Attention taper oui ou non");
+		}
+	}
+
 	public static void checkCodePostal(String codepostal) throws ErreurSaisie {
 		if(codepostal.length() !=5) {
 			throw new ErreurSaisie("Attention le code postal doit être composé de 5 chiffres");
@@ -104,24 +117,6 @@ public class Personne implements Serializable {
 			throw new ErreurSaisie("Attention il faut insérer des chiffres");
 		}
 	}
-	
-
-	public static void checkOuiNon(String clientOuPas) throws ErreurSaisie {
-		if(!clientOuPas.equals("oui")&&!clientOuPas.equals("non")) {
-			throw new ErreurSaisie("Attention taper oui ou non");
-		}
-	}
-
-
-	public String getClientOuPas() {
-		return clientOuPas;
-	}
-
-
-	public void setClientOuPas(String clientOuPas) {
-		this.clientOuPas = clientOuPas;
-	}
-
 	
 
 }

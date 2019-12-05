@@ -4,9 +4,8 @@ import static org.junit.Assert.*;
 
 import java.util.Date;
 
+import org.junit.Before;
 import org.junit.Test;
-
-import projetPOO01.GestionPersonnes.Client;
 import projetPOO01.Methodes.Achat;
 
 public class testsAchat {
@@ -15,9 +14,10 @@ public class testsAchat {
 	private final String ointitule = "Commande";
 	private final String oquantite = "";
 	private final Date setdate = new Date();
-	private final String setintitule = "";
-	private final String setquantite = "";
+	private final String setintitule = "fgh";
+	private final String setquantite = "dg";
 	
+	@Before
 	public void init() {
 		ach = new Achat(odate,ointitule,oquantite);
 		
@@ -46,7 +46,7 @@ public class testsAchat {
 
 	@Test
 	public void testGetIntituleAchat() {
-		assertEquals(ointitule, ach.getDate());
+		assertEquals(ointitule, ach.getIntituleAchat());
 	}
 
 	@Test
